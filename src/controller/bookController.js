@@ -9,7 +9,7 @@ const validator = require('validator');
 const createBook = async function (req, res) {
 
      try {
-          let { title, excerpt, userId, ISBN, category, subcategory, releasedAt } = req.body;
+          let { title, excerpt, userId, ISBN, category, subcategory, releasedAt, bookCover } = req.body;
           // check body present or not
           if (Object.keys(req.body).length === 0) {
                return res.status(400).send({ status: false, message: "In req body data must be present" });
@@ -131,7 +131,7 @@ const getBookById = async function (req, res) {
                return res.status(404).send({ status: false, data: "No books can be found" });
           }
 
-          let result = await reviewModel.find({ _id: bookId, isDeleted: false });
+          let result = await reviewModel.find({  bookId, isDeleted: false });
 
           const details = getSpecificBooks._doc;
           details.reviewsData = result;

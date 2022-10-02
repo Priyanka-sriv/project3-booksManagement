@@ -26,8 +26,8 @@ const userCreate = async function (req, res) {
             return res.status(400).send({ status: false, message: "Name is Empty" });
         };
         if (!/^[ a-z ]+$/i.test(name)) {
-            return res.status(400).send({ status: false, message: "Name is in wrong formet" });
-        };
+            return res.status(400).send({ status: false, message: "Name is in wrong format" });
+        }
         if (!phone) {
             return res.status(400).send({ status: false, message: "Phone is required" });
         };
@@ -72,7 +72,7 @@ const userCreate = async function (req, res) {
                 if (!validations.isValid(address.pincode)) {
                     return res.status(400).send({ status: false, message: "Pincode cannot be empty" });
                 }
-                let pincode = document.address.pincode;
+                let pincode = address.pincode;
 
                 if (!/^[1-9][0-9]{5}$/.test(pincode)) return res.status(400).send({ status: false, msg: " Please Enter Valid Pincode Of 6 Digits" });
 

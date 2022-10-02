@@ -1,9 +1,12 @@
 const express = require('express');
 const router = express.Router();
+const aws= require("aws-sdk")
 const bookController = require("../controller/bookController")
 const reviewController = require("../controller/reviewController")
 const userController = require("../controller/userController")
 const middleware =require("../middleware/auth.js")
+const AWS = require("../Aws/aws.js")
+
 
 
 //========================= create And login User =============
@@ -13,6 +16,7 @@ router.post('/login', userController.loginUser)
 
 //========================= bookController =============
 router.post('/books',middleware.authentication,bookController.createBook)
+router.post("/firstAWS", AWS.FirstAWS)
 router.get('/books',middleware.authentication,bookController.getBooks)
 router.get('/books/:bookId',middleware.authentication,bookController.getBookById)
  router.put('/books/:bookId', middleware.authentication, middleware.authorizations, bookController.updateBook)
